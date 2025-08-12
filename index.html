@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furever Home - Find Your Perfect Pet Companion</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --light: #f7fff7;
+            --dark: #292f36;
+            --accent: #ff9f1c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        nav {
+            background-color: var(--dark);
+            padding: 1rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+        }
+        
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1450778869180-41d0601e046e');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 3rem 0;
+            font-size: 2rem;
+            color: var(--dark);
+        }
+        
+        .pets-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .pet-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .pet-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pet-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .pet-info {
+            padding: 1.5rem;
+        }
+        
+        .pet-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .pet-breed {
+            color: var(--dark);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pet-age {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .pet-description {
+            margin-bottom: 1.5rem;
+        }
+        
+        .adopt-btn {
+            background-color: var(--secondary);
+            width: 100%;
+            text-align: center;
+        }
+        
+        .about {
+            padding: 4rem 2rem;
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .social-icons {
+            margin: 1rem 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Furever Home</div>
+        <div class="tagline">Where every pet finds their perfect family</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#pets">Available Pets</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#adopt">Adoption Process</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Find Your Perfect Companion</h2>
+            <p>Every pet deserves a loving home. Browse our available animals and start your adoption journey today.</p>
+            <a href="#pets" class="btn">Meet Our Pets</a>
+        </div>
+    </section>
+    
+    <h2 class="section-title" id="pets">Pets Available for Adoption</h2>
+    
+    <div class="pets-container">
+        <div class="pet-card">
+            <img src="https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80" alt="Golden Retriever" class="pet-image">
+            <div class="pet-info">
+                <h3 class="pet-name">Max</h3>
+                <p class="pet-breed">Golden Retriever</p>
+                <p class="pet-age">2 years old</p>
+                <p class="pet-description">Max is a friendly and energetic dog who loves playing fetch and going for long walks.</p>
+                <a href="#" class="btn adopt-btn">Adopt Max</a>
+            </div>
+        </div>
+        
+        <div class="pet-card">
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba" alt="Tabby Cat" class="pet-image">
+            <div class="pet-info">
+                <h3 class="pet-name">Luna</h3>
+                <p class="pet-breed">Tabby Cat</p>
+                <p class="pet-age">3 years old</p>
+                <p class="pet-description">Luna is a gentle and affectionate cat who enjoys cuddles and sunny windowsills.</p>
+                <a href="#" class="btn adopt-btn">Adopt Luna</a>
+            </div>
+        </div>
+        
+        <div class="pet-card">
+            <img src="https://images.unsplash.com/photo-1594149929911-78975a43d4f5" alt="Parrot" class="pet-image">
+            <div class="pet-info">
+                <h3 class="pet-name">Rio</h3>
+                <p class="pet-breed">Blue-and-Gold Macaw</p>
+                <p class="pet-age">5 years old</p>
+                <p class="pet-description">Rio is a colorful and intelligent bird who loves interacting with people.</p>
+                <a href="#" class="btn adopt-btn">Adopt Rio</a>
+            </div>
+        </div>
+        
+        <div class="pet-card">
+            <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5f" alt="Rabbit" class="pet-image">
+            <div class="pet-info">
+                <h3 class="pet-name">Bella</h3>
+                <p class="pet-breed">Holland Lop Rabbit</p>
+                <p class="pet-age">1 year old</p>
+                <p class="pet-description">Bella is a sweet and curious rabbit who enjoys exploring and munching on fresh veggies.</p>
+                <a href="#" class="btn adopt-btn">Adopt Bella</a>
+            </div>
+        </div>
+    </div>
+    
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2 class="section-title">About Furever Home</h2>
+            <p>Founded in 2015, Furever Home is a non-profit organization dedicated to finding loving homes for abandoned and rescued animals. Our team of volunteers works tirelessly to provide care, medical attention, and love to animals in need while they wait for their perfect match.</p>
+            <p>We believe every pet deserves a second chance at happiness, and every family deserves the unconditional love a pet can bring.</p>
+            <a href="#" class="btn">Learn More About Us</a>
+        </div>
+    </section>
+    
+    <footer id="contact">
+        <h3>Furever Home</h3>
+        <p>123 Pet Adoption Lane, Anytown, USA</p>
+        <p>Phone: (555) 123-4567</p>
+        <p>Email: adopt@fureverhome.org</p>
+        
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        
+        <p>&copy; 2023 Furever Home. All rights reserved.</p>
+    </footer>
+    
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
