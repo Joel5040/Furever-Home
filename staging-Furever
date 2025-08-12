@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws & Hearts - Discover Your New Best Friend</title>
+    <style>
+        :root {
+            --primary: #6a5acd;  /* Changed from red to slate blue */
+            --secondary: #48d1cc;  /* Changed teal to medium turquoise */
+            --light: #f8f8ff;  /* Changed to ghost white */
+            --dark: #2f4f4f;  /* Changed to dark slate gray */
+            --accent: #ffa500;  /* Changed to orange */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', Helvetica, sans-serif;  /* Changed font stack */
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;  /* Increased line height */
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--accent));  /* Changed gradient direction */
+            color: white;
+            padding: 3rem 0;  /* Increased padding */
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);  /* Added border */
+        }
+        
+        .logo {
+            font-size: 3.5rem;  /* Increased size */
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);  /* Added text shadow */
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            font-weight: 300;  /* Changed to lighter weight */
+            letter-spacing: 1px;  /* Added letter spacing */
+        }
+        
+        nav {
+            background-color: var(--dark);
+            padding: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: space-around;  /* Changed from center to space-around */
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1544568100-847a948585b9');  /* Changed hero image */
+            background-size: cover;
+            background-position: center;
+            height: 70vh;  /* Increased height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));  /* Changed overlay */
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 3rem;  /* Increased padding */
+        }
+        
+        .hero h2 {
+            font-size: 3rem;  /* Increased size */
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;  /* Increased padding */
+            border-radius: 8px;  /* Changed from pill shape */
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);  /* Changed from translateY */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: transparent;
+            border-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 4rem 0;  /* Increased margin */
+            font-size: 2.5rem;  /* Increased size */
+            color: var(--primary);  /* Changed color */
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 1rem auto;
+        }
+        
+        .pets-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));  /* Slightly larger cards */
+            gap: 2.5rem;  /* Increased gap */
+            padding: 0 3rem;  /* Increased padding */
+            margin-bottom: 5rem;
+        }
+        
+        .pet-card {
+            background-color: white;
+            border-radius: 15px;  /* Increased border radius */
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);  /* Increased shadow */
+            transition: all 0.3s;
+            border: 1px solid #eee;
+        }
+        
+        .pet-card:hover {
+            transform: translateY(-5px) scale(1.02);  /* Added scale effect */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pet-image {
+            height: 280px;  /* Increased height */
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 5px solid var(--secondary);  /* Added border */
+        }
+        
+        .pet-info {
+            padding: 2rem;  /* Increased padding */
+        }
+        
+        .pet-name {
+            font-size: 1.6rem;  /* Increased size */
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .pet-breed {
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        .pet-age {
+            color: #777;
+            margin-bottom: 1.2rem;
+            font-style: italic;
+        }
+        
+        .pet-description {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .adopt-btn {
+            background-color: var(--secondary);
+            width: 100%;
+            text-align: center;
+            padding: 1rem;  /* Increased padding */
+            font-size: 1.1rem;
+        }
+        
+        .about {
+            padding: 5rem 2rem;  /* Increased padding */
+            background-color: var(--primary);  /* Changed from secondary */
+            color: white;
+            text-align: center;
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);  /* Added angled edges */
+        }
+        
+        .about-content {
+            max-width: 900px;  /* Increased max width */
+            margin: 0 auto;
+        }
+        
+        .about-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem;  /* Increased padding */
+            margin-top: 4rem;
+        }
+        
+        footer h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        footer p {
+            margin-bottom: 1rem;
+        }
+        
+        .social-icons {
+            margin: 2rem 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 1rem;  /* Increased margin */
+            font-size: 2rem;  /* Increased size */
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.8rem 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .pets-container {
+                grid-template-columns: 1fr;
+                padding: 0 1.5rem;
+            }
+            
+            .about {
+                clip-path: none;
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Paws & Hearts</div>
+        <div class="tagline">Connecting loving homes with furry friends</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#pets">Our Pets</a></li>
+            <li><a href="#about">Our Mission</a></li>
+            <li><a href="#adopt">How to Adopt</a></li>
+            <li><a href="#contact">Get in Touch</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Your New Best Friend Awaits</h2>
+            <p>Discover the joy of pet adoption and give a deserving animal the loving home they've been waiting for.</p>
+            <a href="#pets" class="btn">View Adoptable Pets</a>
+        </div>
+    </section>
+    
+    <h2 class="section-title" id="pets">Meet Our Furry Friends</h2>
+    
+    <div class="pets-container">
+        <div class="pet-card">
+            <img src="https://images.unsplash.com/photo-1601758003122-53c40e686a19" alt="Golden Retriever" class="pet-image">
+            <div class="pet-info">
+                <h3 class="pet-name">Buddy</h3>
+                <p class="pet-breed">Golden Retriever</p>
+                <p class="pet-age">3 years old</p>
+                <p class="pet-description">Buddy is a gentle soul who loves belly rubs and playing in the park. He's great with kids and other dogs.</p>
+                <a href="#" class="btn adopt-btn">Adopt Buddy</a>
+            </div>
+        </div>
+        
+        <div class="pet-card">
+            <img src="https://images.unsplash.com/photo-1511044568932-338cba0ad803" alt="Siamese Cat" class="pet-image">
+            <div class="pet-info">
+                <h3 class="pet-name">Misty</h3>
+                <p class="pet-breed">Siamese Cat</p>
+                <p class="pet-age">2 years old</p>
+                <p class="pet-description">Misty is a talkative and affectionate companion who will follow you everywhere and keep you entertained.</p>
+                <a href="#" class="btn adopt-btn">Adopt Misty</a>
+            </div>
+        </div>
+        
+        <div class="pet-card">
+            <img src="https://images.unsplash.com/photo-1559715541-5daf8a0296d0" alt="Husky Puppy" class="pet-image">
+            <div class="pet-info">
+                <h3 class="pet-name">Koda</h3>
+                <p class="pet-breed">Siberian Husky</p>
+                <p class="pet-age">8 months old</p>
+                <p class="pet-description">Koda is an energetic puppy with stunning blue eyes who loves adventure and learning new tricks.</p>
+                <a href="#" class="btn adopt-btn">Adopt Koda</a>
+            </div>
+        </div>
+        
+        <div class="pet-card">
+            <img src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308" alt="Guinea Pig" class="pet-image">
+            <div class="pet-info">
+                <h3 class="pet-name">Pepper</h3>
+                <p class="pet-breed">Abyssinian Guinea Pig</p>
+                <p class="pet-age">1 year old</p>
+                <p class="pet-description">Pepper is a charming little guy with a big personality who loves fresh veggies and cozy hideouts.</p>
+                <a href="#" class="btn adopt-btn">Adopt Pepper</a>
+            </div>
+        </div>
+    </div>
+    
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2 class="section-title">Our Mission</h2>
+            <p>Since 2018, Paws & Hearts has been dedicated to rescuing animals from shelters and finding them permanent, loving homes. We're more than just an adoption center - we're a community of animal lovers committed to making a difference.</p>
+            <p>Our comprehensive approach includes medical care, behavioral training, and post-adoption support to ensure successful matches that last a lifetime. We believe adoption should be a joyful and supported experience for both pets and people.</p>
+            <a href="#" class="btn">Our Story</a>
+        </div>
+    </section>
+    
+    <footer id="contact">
+        <h3>Paws & Hearts Adoption Center</h3>
+        <p>456 Animal Rescue Road, Petville, USA</p>
+        <p>Phone: (555) 987-6543</p>
+        <p>Email: info@pawsandhearts.org</p>
+        
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <p>&copy; 2023 Paws & Hearts. All rights reserved.</p>
+    </footer>
+    
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
